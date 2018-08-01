@@ -12,8 +12,39 @@
 <body>
     <main>
         {% block navigator %}
-        {% endblock %}
-        {% block subject %}
+
+            <div class="jumbotron text-center">
+                <h1>Ingreso de CRF</h1>
+                <p>Resize this responsive page to see the effect!</p> 
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                    </div>
+                    <div class="col-sm-4">
+                        {% if user.is_authenticated %}
+                            Hi {{ user.username }}!
+                            <p></p>
+                            <a href="{% url 'crf_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a href="{% url 'logout' %}">logout</a>
+                        {% else %}
+                            <p>You are not logged in</p>
+                            <a href="{% url 'login' %}">login</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        {% endblock %}
+                        {% block subject %}
+                    </div>
+                    <div class="col-sm-8">
+                    </div>
+                </div>
+                </div>
+            </div>
+
         {% endblock %}
     </main>
 </body>

@@ -3,8 +3,8 @@
 {% block title %}Subject{% endblock %}
 
 {% block subject %}
-    <h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+    <h1>New CRF</h1>
+    <form method="POST" class="crf-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
     </form>

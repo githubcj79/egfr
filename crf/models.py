@@ -7,15 +7,11 @@ from django.core.validators import MinLengthValidator, RegexValidator
 class Subject(models.Model):
     '''
     '''
-    #subjectId = models.IntegerField() # ID del sujeto
     subjectId = models.CharField(
+        primary_key=True,
         validators=[RegexValidator(r'\d{8,8}','Ingresar 8 digitos'),],
-        #validators=[MinLengthValidator(8, "largo mínimo 8"),RegexValidator(r'\d{8,8}','Number must be 11 digits','Invalid number')],
-        #number =  models.IntegerField(max_length=11, validators=[RegexValidator(r'\d{11,11}','Number must be 11 digits','Invalid number')])
         max_length=8,
         blank=False,
-        #default='n',
-        #help_text='ID del sujeto',
         help_text='(8 dígitos)',
     )
 

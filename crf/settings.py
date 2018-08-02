@@ -122,3 +122,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+FIXTURE_DIRS = (
+    '/mnt/linux/home/jimenc33/Dev/crf/crf/fixtures/',
+)

@@ -14,7 +14,7 @@
         {% block navigator %}
 
             <div class="jumbotron text-center">
-                <h1>CRF Entry</h1>
+                <h1>EGFR Entry</h1>
                 <p>Resize this responsive page to see the effect!</p> 
             </div>
 
@@ -36,8 +36,16 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
+                        {% block egfr %}
                         {% endblock %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
                         {% block subject %}
+                        {% endblock %}
                     </div>
                     <div class="col-sm-8">
                     </div>

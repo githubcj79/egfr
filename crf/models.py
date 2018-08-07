@@ -2,14 +2,25 @@ from django.conf import settings
 from django.db import models
 from django.core.validators import MinLengthValidator, RegexValidator
 
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
 # Create your models here.
+
+def validate_even(value):
+    if (int)(value) % 2 != 0:
+        raise ValidationError(
+            _('%(value)s is not an even number'),
+            params={'value': value},
+    )
 
 class Subject(models.Model):
     '''
     '''
     subjectId = models.CharField(
         primary_key=True,
-        validators=[RegexValidator(r'\d{8,8}','Ingresar 8 digitos'),],
+        validators=[RegexValidator(r'\d{8,8}','Ingresar 8 digitos'),
+                    validate_even],
         max_length=8,
         blank=False,
         help_text='(8 dígitos)',

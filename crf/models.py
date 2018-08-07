@@ -20,7 +20,7 @@ def validate_existence(value):
     '''
     if not Subject.objects.filter(subjectId=value).exists():
         raise ValidationError(
-            _('%(value)s does not exist in the Data Base'),
+            _('SubjectId %(value)s does not exist in the Data Base'),
             params={'value': value},
     )
 
@@ -29,12 +29,12 @@ class Subject(models.Model):
     '''
     subjectId = models.CharField(
         primary_key=True,
-        validators=[RegexValidator(r'\d{8,8}','Ingresar 8 digitos'),
+        validators=[RegexValidator(r'\d{8,8}','Enter 8 digits'),
                     #validate_even,
                     validate_existence,],
         max_length=8,
         blank=False,
-        help_text='(8 dígitos)',
+        help_text='(8 digits)',
     )
 
     def __str__(self):

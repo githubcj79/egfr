@@ -14,13 +14,26 @@ def validate_even(value):
             params={'value': value},
     )
 
+def validate_existence(value):
+    '''
+    La idea es validar la existencia del subjectId recibido contra la b.d
+    if Subject.objects.filter(subjectId=subject.subjectId).exists():
+    '''
+    #if Subject.objects.filter(subjectId=str(value)).exists():
+    if not Subject.objects.filter(subjectId=value).exists():
+        raise ValidationError(
+            _('%(value)s does not exits in the Data Base'),
+            params={'value': value},
+    )
+
 class Subject(models.Model):
     '''
     '''
     subjectId = models.CharField(
         primary_key=True,
         validators=[RegexValidator(r'\d{8,8}','Ingresar 8 digitos'),
-                    validate_even],
+                    validate_even,
+                    validate_existence,],
         max_length=8,
         blank=False,
         help_text='(8 dígitos)',

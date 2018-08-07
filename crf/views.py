@@ -26,21 +26,6 @@ def crf_new(request):
         form = SubjectForm()
     return render(request, 'crf_edit.html', {'form': form})
     #return render(request, 'blog/post_edit.html', {'form': form})
-
-def crf_newWORKING_ON(request):
-    if request.method == "POST":
-        form = SubjectForm(request.POST)
-        if form.is_valid():
-            subject = form.save(commit=False)
-            if Subject.objects.filter(subjectId=subject.subjectId).exists():
-                print('subjectId[{0}] existe'.format(subject.subjectId))
-                print('Previo a desplegar formsets')
-            else:
-                #raise ValidationError(_('No existe un SubjectID con este identificador.'))
-                raise ValidationError('No existe un SubjectID con este identificador.')
-    else:
-        form = SubjectForm()
-    return render(request, 'crf_edit.html', {'form': form})
 '''
 
 def crf_new(request):

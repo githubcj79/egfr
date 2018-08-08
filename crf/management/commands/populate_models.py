@@ -38,6 +38,9 @@ class Command(BaseCommand):
 
         for subjectId in subjetSet:
             print("subjectId[{0}]".format(subjectId), end='\n')
+            subject = Subject(subjectId=subjectId)
+            subject.save()
+
 
     def handle(self, *args, **options):
         self._create_objs()

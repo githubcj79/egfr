@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django import forms
+from django.shortcuts import redirect
 
 from .forms import SubjectForm
 from .models import Subject
@@ -28,6 +29,9 @@ def crf_new(request):
     #return render(request, 'blog/post_edit.html', {'form': form})
 '''
 
+def egfr_detail(request, subjectId):
+    print("egfr_detail: user[{0}] subjectId[{1}]".format(request.user, subjectId))
+
 def crf_new(request):
     if request.method == "POST":
         form = SubjectForm(request.POST)
@@ -38,7 +42,7 @@ def crf_new(request):
             #post.published_date = timezone.now()
             #post.save()
             print('Previo a desplegar formsets')
-            #return redirect('post_detail', pk=post.pk)
+            return redirect('egfr_detail', subjectId=subject.subjectId)
     else:
         form = SubjectForm()
     return render(request, 'crf_edit.html', {'form': form})

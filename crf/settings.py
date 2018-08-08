@@ -126,3 +126,6 @@ LOGOUT_REDIRECT_URL = 'home'
 FIXTURE_DIRS = (
     '/mnt/linux/home/jimenc33/Dev/crf/crf/fixtures/',
 )
+
+SUBJECTID_DATAFILE = os.path.join(BASE_DIR, 'crf/data/SubjectID.txt')
+VARIANT_DATAFILE = os.path.join(BASE_DIR, 'crf/data/Variants.txt')

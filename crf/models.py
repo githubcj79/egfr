@@ -44,7 +44,7 @@ class Subject(models.Model):
 class Variation(models.Model):
     '''
     '''
-    variation = models.CharField(max_length=8)
+    variation = models.CharField(max_length=16, primary_key=True,)
 
     def __str__(self):
         """String for representing the Model object."""
@@ -54,8 +54,8 @@ class Testing(models.Model):
     '''
     '''
     writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    variation = models.ForeignKey('Variation', on_delete=models.CASCADE)
-    subjectId = models.ForeignKey('Subject', on_delete=models.CASCADE)
+    variation = models.ForeignKey(Variation, on_delete=models.CASCADE)
+    subjectId = models.ForeignKey(Subject, on_delete=models.CASCADE)
     CHOICES = (
         ('s', 'Si'),
         ('n', 'No'),
@@ -69,6 +69,9 @@ class Testing(models.Model):
         help_text='Estado del testing',
     )
 
+    class Meta:
+        unique_together = (('writer', 'variation', 'subjectId',),)
+
     def __str__(self):
         """String for representing the Model object."""
         return f'({self.writer}) {self.subjectId} {self.variation}:Testeado[{self.test}]'
@@ -76,7 +79,7 @@ class Testing(models.Model):
 class Result(models.Model):
     '''
     '''
-    testing = models.ForeignKey('Testing', on_delete=models.CASCADE)
+    testing = models.ForeignKey(Testing, on_delete=models.CASCADE)
     CHOICES = (
         ('p', 'Positivo'),
         ('n', 'Negativo'),
@@ -91,6 +94,9 @@ class Result(models.Model):
         help_text='Estado del resultado',
     )
 
+    class Meta:
+        unique_together = (('testing', 'result',), )
+
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.testing} Resultado[{self.result}]'
@@ -98,7 +104,7 @@ class Result(models.Model):
 class Method(models.Model):
     '''
     '''
-    testing = models.ForeignKey('Testing', on_delete=models.CASCADE)
+    testing = models.ForeignKey(Testing, on_delete=models.CASCADE)
     CHOICES = (
         ('p', 'PCR'),
         ('n', 'NGS'),
@@ -111,6 +117,9 @@ class Method(models.Model):
         default='n',
         help_text='Método usado',
     )
+
+    class Meta:
+        unique_together = (('testing', 'method',), )
 
     def __str__(self):
         """String for representing the Model object."""

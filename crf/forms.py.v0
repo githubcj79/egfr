@@ -33,13 +33,6 @@ class Address(models.Model):
     address = models.CharField(max_length=255)
 '''
 
-# forms.py - uno en cada página
-
-from django.forms.models import inlineformset_factory
-
-ChildrenFormset = inlineformset_factory(models.Parent, models.Child, extra=1)
-AddressFormset = inlineformset_factory(models.Child, models.Address, extra=1)
-
 # forms.py - formsets anidados
 
 from django.forms.models import BaseInlineFormSet

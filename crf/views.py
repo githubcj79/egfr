@@ -14,7 +14,7 @@ def create_egfr(user, subjectId):
 
     v_list = Variation.objects.all()
     for _variation in v_list:
-        print("create_egfr: _variation[{0}]".format(_variation))
+        #print("create_egfr: _variation[{0}]".format(_variation))
 
         try:
             _testing = Testing.objects.get(writer=user,variation=_variation,subjectId=_subject)
@@ -38,21 +38,6 @@ def create_egfr(user, subjectId):
             _method = Method()
             _method.testing = _testing # I assume this is how to relate objects
             _method.save() # I assume unique fields are working as expected
-        '''
-        _testing = Testing()
-        _testing.writer = user
-        _testing.variation = _variation # I assume this is how to relate objects
-        _testing.subjectId = _subject
-        _testing.save() # I assume unique fields are working as expected
-
-        _result = Result()
-        _result.testing = _testing # I assume this is how to relate objects
-        _result.save() # I assume unique fields are working as expected
-
-        _method = Method()
-        _method.testing = _testing # I assume this is how to relate objects
-        _method.save() # I assume unique fields are working as expected
-        '''
 
 def egfr_detail(request, subjectId):
     print("egfr_detail: user[{0}] subjectId[{1}]".format(request.user, subjectId))

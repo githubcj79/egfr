@@ -1,24 +1,7 @@
-from django import forms
-
-from .models import Subject
-
-class SubjectForm(forms.ModelForm):
-
-    class Meta:
-        model = Subject
-        fields = ('subjectId', )
-
-    def validate_unique(self):
-        #De este modo se evita la validación de unicidad en crf/views.py:form.is_valid()
-        pass
-
-#===========================================================
-
 # Taken from https://micropyramid.com/blog/how-to-use-nested-formsets-in-django/
 
 # models.py
 
-'''
 class Parent(models.Model):
     name = models.CharField(max_length=255)
 
@@ -31,9 +14,8 @@ class Address(models.Model):
     country = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
-'''
 
-# forms.py - uno en cada página
+# forms.py - cada formset en una página
 
 from django.forms.models import inlineformset_factory
 
